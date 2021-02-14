@@ -16,7 +16,7 @@ const sequelize = new Sequelize({
 const Meme = MemeModel(sequelize, Sequelize);
 
 sequelize
-  .sync({ alter: true, force: true })
+  .sync({ alter: false })
   .then(() => {
     console.log(`Database and Tables Created`);
   })
