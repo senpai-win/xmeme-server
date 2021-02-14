@@ -10,6 +10,7 @@ const sequelize = new Sequelize({
   ...databaseOptions,
   dialect: "mysql",
   database: "database1",
+  port: 3306
 });
 
 const Meme = MemeModel(sequelize, Sequelize);
