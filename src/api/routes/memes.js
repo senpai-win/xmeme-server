@@ -8,9 +8,15 @@ const route = Router();
 route.post("/memes", async (req, res) => {
   const data = req.body;
   try {
+    const { name, url, caption} = data;
+    // Both name and caption are required
+    if(!name || !caption){
+      res.sendStatus(400); // Bad Request
+      return;
+    }
+    
     // URL Validation
-    let { url } = data;
-    const validateUrl = new RegExp(/^(https?:\/\/)?([A-Za-z]+\.)?[A-Za-z0-9]+\.[A-Za-z]+(\/.+)?$/);
+    const validateUrl = new RegExp(/^(https?:\/\/)?([A-Za-z0-9]+\.)?[A-Za-z0-9]+\.[A-Za-z]+(\/.+)?$/);
     if(!validateUrl.test(url)){
       res.sendStatus(422);
       return;
