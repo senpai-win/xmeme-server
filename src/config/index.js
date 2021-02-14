@@ -7,10 +7,6 @@ module.exports = {
       port: process.env.PORT,
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PWD,
-      pool: {
-        max: 20,
-        min: 5,
-      },
     },
     development: {
       host: process.env.DEV_DB_HOST,
