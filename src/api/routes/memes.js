@@ -1,5 +1,6 @@
 const { Router } = require("express");
-
+const isImageUrl = require('is-image-url');
+ 
 const Memes = require("../../services/Memes");
 
 const route = Router();
@@ -12,6 +13,10 @@ route.post("/memes", async (req, res) => {
     // Both name and caption are required
     if(!name || !caption || !url ){
       res.sendStatus(400); // Bad Request
+      return;
+    }
+    if(!isImageUrl(url)){
+      res.sendStatus(422);
       return;
     }
     const { status, id } = await Memes.addMemeToCollection(data);
