@@ -10,15 +10,8 @@ route.post("/memes", async (req, res) => {
   try {
     const { name, url, caption} = data;
     // Both name and caption are required
-    if(!name || !caption){
+    if(!name || !caption || !url ){
       res.sendStatus(400); // Bad Request
-      return;
-    }
-    
-    // URL Validation
-    const validateUrl = new RegExp(/^(https?:\/\/)?([A-Za-z0-9]+\.)?[A-Za-z0-9]+\.[A-Za-z]+(\/.+)?$/);
-    if(!validateUrl.test(url)){
-      res.sendStatus(422);
       return;
     }
     const { status, id } = await Memes.addMemeToCollection(data);
